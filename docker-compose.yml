@@ -35,5 +35,26 @@ services:
     networks:
       - default-net
 
+  mariadb:
+    image: mariadb:10.2
+    hostname: mariadb
+    container_name: mariadb
+    environment:
+      - TZ=Asia/Taipei
+      - MYSQL_ROOT_PASSWORD=1qaz2wsx
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=david
+      - MYSQL_PASSWORD=1qaz2wsx
+    ports:
+      - "3306:3306"
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    restart: always
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    networks:
+      - default-net
+
 networks:
   default-net:
