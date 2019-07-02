@@ -14,7 +14,7 @@ module.exports = {
     },
     getNoteById: async (ctx) => {
         try {
-            const { id } = ctx.request.query;
+            const { id } = ctx.params;
 
             const notes = await db('notes')
                 .where('id', id)
@@ -45,7 +45,7 @@ module.exports = {
     },
     deleteNote: async (ctx) => {
         try {
-            const { id } = ctx.request.body;
+            const { id } = ctx.params;
 
             await db('notes')
                 .where('id', id)
@@ -60,7 +60,8 @@ module.exports = {
     },
     updateNote: async (ctx) => {
         try {
-            const { id, title, content } = ctx.request.body;
+            const { id } = ctx.params;
+            const { title, content } = ctx.request.body;
 
             await db('notes')
                 .where('id', id)
