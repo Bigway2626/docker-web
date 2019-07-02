@@ -9,6 +9,10 @@ services:
       - TZ=Asia/Taipei
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    links:
+      - db
     container_name: web
     command: bash -c 'node server'
     logging:
@@ -35,10 +39,10 @@ services:
     networks:
       - default-net
 
-  mariadb:
+  db:
     image: mariadb:10.2
-    hostname: mariadb
-    container_name: mariadb
+    hostname: db
+    container_name: db
     environment:
       - TZ=Asia/Taipei
       - MYSQL_ROOT_PASSWORD=1qaz2wsx
