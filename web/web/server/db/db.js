@@ -1,3 +1,3 @@
-var config = require('../knexfile.js')['development'];
+var config = require('../knexfile')['development'];
 
 module.exports = require('knex')(config);
